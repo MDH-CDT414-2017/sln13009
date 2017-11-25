@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 /** BowlingGame Score calculator 
  *
  * @author CDT414 Student: Sebastian Lindgren, sln13009
@@ -12,7 +10,6 @@ public class BowlingGame {
 	 * @param game Expected format "[n,n][n,n]..[n,n]"
 	 * 
 	 */	 
-	
 	int score;
 	
 	public BowlingGame(String game)
