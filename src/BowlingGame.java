@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /** BowlingGame Score calculator 
  *
  * @author CDT414 Student: Sebastian Lindgren, sln13009
@@ -28,20 +30,56 @@ public class BowlingGame {
 		
 		String[] items = arr.replaceAll("\\[", "").replaceAll("\\]", ",").replaceAll("\\s", "").split(",");
 		
-		int[] frames = new int[items.length];
+		if(items.length < 20 || items.length > 22)
+			return -1;
+		
+		int[] values = new int[items.length];
 
 		for (int i = 0; i < items.length; i++) {
 			try {
-		        frames[i] = Integer.parseInt(items[i]);
+		        values[i] = Integer.parseInt(items[i]);
 		    } catch (NumberFormatException nfe) {
 		        return -1;
 		    };
 		}
 		
-		int sum = 0;
-		for (int i = 0; i < items.length; i++) {
-			sum = sum + frames[i];
+		Frame[] frames = new Frame[11];
+		
+		int j = 0;
+		for (int i = 0; i < 10; i++) {
+				frames[i] = new Frame(values[j], values[j+1]);
+				j+=2;
 		}
+		if((float)items.length/2 > 10)
+		{
+			if(items.length == 21)
+				frames[10] = new Frame(values[20], 0);
+			if(items.length == 22)
+				frames[10] = new Frame(values[20], values[21]);
+		}
+		
+		int[] total = new int[10];
+		
+		for (int i = 0; i < 10; i++) {
+			if(!frames[i].isValid()){
+				return -1;
+			}
+			if(frames[i].isStrike()) {
+				total[i] = frames[i].getFirstThrow()+frames[i].getSecondThrow();
+				if(!(i==9) && frames[i+1].getSecondThrow() == 0)
+					total[i] += frames[i+1].getFirstThrow() + frames[i+2].getFirstThrow();
+				else
+					total[i] += frames[i+1].getFirstThrow()+frames[i+1].getSecondThrow();
+			}
+			else if(frames[i].isSpare())
+				total[i] = frames[i].getFirstThrow()+frames[i].getSecondThrow()+frames[i+1].getFirstThrow();
+			else 
+				total[i] = frames[i].getFirstThrow()+frames[i].getSecondThrow();
+		}
+		
+		int sum = 0;
+		for (int i = 0; i < 10; i++)
+			sum += total[i];
 		
 		return sum;
 	}

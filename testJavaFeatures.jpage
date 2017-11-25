@@ -3,7 +3,7 @@
  * 
  */
 
-String arr = new String("[10,0][10,0][7,2][3,6][4,4][5,3][3,3][4,5][8,1][2,6]");
+String arr = new String("[10,0][10,0][10,0][10,0][10,0][10,0][10,0][10,0][10,0][10,0][10,10]");
 
 String[] items = arr.replaceAll("\\[", "").replaceAll("\\]", ",").replaceAll("\\s", "").split(",");
 		
@@ -14,3 +14,5 @@ for (int i = 0; i < items.length; i++) {
         frames[i] = Integer.parseInt(items[i]);
         System.out.println(frames[i]);
 }
+
+items.length
