@@ -49,7 +49,7 @@ public class FrameTest {
 		assertEquals(false, f1.isSpare());
 	}
 	@Test
-	public void testMiss() {
+	public void testMiss01() {
 		Frame f1 = new Frame();
 		f1.setFirstThrow(0);
 		f1.setSecondThrow(0);
@@ -58,6 +58,21 @@ public class FrameTest {
 		assertEquals(0,f1.getSecondThrow());
 		assertEquals(false, f1.isStrike());
 		assertEquals(false, f1.isSpare());
+		
+		assertEquals(true, f1.isMiss());
+	}
+	@Test
+	public void testMiss02() {
+		Frame f1 = new Frame();
+		f1.setFirstThrow(1);
+		f1.setSecondThrow(1);
+		
+		assertEquals(1,f1.getFirstThrow());
+		assertEquals(1,f1.getSecondThrow());
+		assertEquals(false, f1.isStrike());
+		assertEquals(false, f1.isSpare());
+		
+		assertEquals(false, f1.isMiss());
 	}
 	@Test
 	public void testValid01() {
