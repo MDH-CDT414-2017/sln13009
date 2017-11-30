@@ -14,7 +14,10 @@ public class BowlingGame {
 	
 	public BowlingGame(String game)
 	{	
-		this.score = calculateScore(game);
+		if(game != null && !game.isEmpty())
+			this.score = calculateScore(game);
+		else
+			this.score = -1;
 	}
 	
 	/** getScore method returns a score of current Bowling game or -1 if error
@@ -24,10 +27,14 @@ public class BowlingGame {
 	
 	private int calculateScore(String arr)
 	{	
-		
 		String[] items = arr.replaceAll("\\[", "").replaceAll("\\]", ",").replaceAll("\\s", "").split(",");
 		
 		if(items.length < 20 || items.length > 22)
+			return -1;
+		
+		String validInputFormat = arr.replaceAll("[0-9]", "");
+		
+		if(!(items.length==21 && validInputFormat.length()==32) && !(validInputFormat.length()==30 || validInputFormat.length()==33))
 			return -1;
 		
 		int[] values = new int[items.length];
@@ -47,10 +54,21 @@ public class BowlingGame {
 				frames[i] = new Frame(values[j], values[j+1]);
 				j+=2;
 		}
-		if(items.length == 21)
-				frames[10] = new Frame(values[20], 0);
-		if(items.length == 22)
-				frames[10] = new Frame(values[20], values[21]);
+		if(items.length == 21) {
+			frames[10] = new Frame(values[20], 0);
+			if(!frames[9].isSpare())
+				return -1;
+		}
+		if(items.length == 22) {
+			frames[10] = new Frame(values[20], values[21]);
+			if(!frames[9].isStrike())
+				return -1;
+		}
+		
+		if(frames[9].isSpare() && items.length != 21)
+			return -1;
+		if(frames[9].isStrike() && items.length != 22)
+			return -1;
 		
 		int[] total = new int[10];
 		
