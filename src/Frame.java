@@ -46,7 +46,16 @@ public class Frame {
 	}
 
 	public boolean isValid() {
-		return (firstThrow < 11 && firstThrow > -1 && secondThrow < 11 && secondThrow > -1) && ((firstThrow+secondThrow) <= 10);
+		return (
+				((firstThrow+secondThrow) <= 10)
+				&&
+				firstThrow <= 10 
+				&& 
+				firstThrow > -1 
+				&& 
+				secondThrow <= 10 
+				&& 
+				secondThrow > -1);
 	}
 
 

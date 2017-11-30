@@ -93,7 +93,7 @@ public class FrameTest {
 	@Test
 	public void testValid03() {
 		Frame f1 = new Frame();
-		f1.setFirstThrow(11);
+		f1.setFirstThrow(1001);
 		f1.setSecondThrow(5);
 
 		assertEquals(false, f1.isValid());
@@ -102,7 +102,7 @@ public class FrameTest {
 	public void testValid04() {
 		Frame f1 = new Frame();
 		f1.setFirstThrow(5);
-		f1.setSecondThrow(12);
+		f1.setSecondThrow(120);
 
 		assertEquals(false, f1.isValid());
 	}
@@ -113,5 +113,79 @@ public class FrameTest {
 		f1.setSecondThrow(0);
 		
 		assertEquals(true, f1.isValid());
+	}
+	@Test
+	public void testValid06() {
+		Frame f1 = new Frame();
+		f1.setFirstThrow(0);
+		f1.setSecondThrow(10);
+		
+		assertEquals(true, f1.isValid());
+	}
+	@Test
+	public void testValid07() {
+		Frame f1 = new Frame();
+		f1.setFirstThrow(0);
+		f1.setSecondThrow(11);
+		
+		assertEquals(false, f1.isValid());
+	}
+	@Test
+	public void testValid08() {
+		Frame f1 = new Frame();
+		f1.setFirstThrow(0);
+		f1.setSecondThrow(12);
+		
+		assertEquals(false, f1.isValid());
+	}
+	@Test
+	public void testValid09() {
+		Frame f1 = new Frame();
+		f1.setFirstThrow(11);
+		f1.setSecondThrow(12);
+		
+		assertEquals(false, f1.isValid());
+	}
+	@Test
+	public void testValid10() {
+		Frame f1 = new Frame();
+		f1.setFirstThrow(12);
+		f1.setSecondThrow(12);
+		
+		assertEquals(false, f1.isValid());
+	}
+	@Test
+	public void testValid11() {
+		Frame f1 = new Frame();
+		f1.setFirstThrow(11);
+		f1.setSecondThrow(11);
+		
+		assertEquals(false, f1.isValid());
+	}
+	@Test
+	public void testValid12() {
+		Frame f1 = new Frame();
+		f1.setFirstThrow(-1);
+		f1.setSecondThrow(-1);
+
+		assertEquals(false, f1.isValid());
+	}
+
+	@Test
+	public void testValid13() {
+		Frame f1 = new Frame();
+		f1.setFirstThrow(1);
+		f1.setSecondThrow(-1);
+
+		assertEquals(false, f1.isValid());
+	}
+
+	@Test
+	public void testValid14() {
+		Frame f1 = new Frame();
+		f1.setFirstThrow(2);
+		f1.setSecondThrow(-1);
+
+		assertEquals(false, f1.isValid());
 	}
 }

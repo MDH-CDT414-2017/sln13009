@@ -47,13 +47,10 @@ public class BowlingGame {
 				frames[i] = new Frame(values[j], values[j+1]);
 				j+=2;
 		}
-		if((float)items.length/2 > 10)
-		{
-			if(items.length == 21)
+		if(items.length == 21)
 				frames[10] = new Frame(values[20], 0);
-			if(items.length == 22)
+		if(items.length == 22)
 				frames[10] = new Frame(values[20], values[21]);
-		}
 		
 		int[] total = new int[10];
 		
@@ -62,7 +59,7 @@ public class BowlingGame {
 				return -1;
 			}
 			if(frames[i].isStrike()) {
-				total[i] = frames[i].getFirstThrow()+frames[i].getSecondThrow();
+				total[i] = frames[i].getFirstThrow();
 				if(!(i==9) && frames[i+1].getSecondThrow() == 0)
 					total[i] += frames[i+1].getFirstThrow() + frames[i+2].getFirstThrow();
 				else
