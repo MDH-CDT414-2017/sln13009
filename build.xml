@@ -24,11 +24,13 @@
         <mkdir dir="bin"/>
         <copy includeemptydirs="false" todir="bin">
             <fileset dir="src">
+                <exclude name="**/*.launch"/>
                 <exclude name="**/*.java"/>
             </fileset>
         </copy>
         <copy includeemptydirs="false" todir="bin">
             <fileset dir="test">
+                <exclude name="**/*.launch"/>
                 <exclude name="**/*.java"/>
             </fileset>
         </copy>
@@ -70,11 +72,33 @@
             <classpath refid="BowlingGame.classpath"/>
         </junit>
     </target>
+    <target name="BowlingGame">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="AllBowlingTests" todir="${junit.output.dir}"/>
+            <test name="BowlingGameTest" todir="${junit.output.dir}"/>
+            <test name="BowlingGameTest_Ultimate" todir="${junit.output.dir}"/>
+            <test name="FrameTest" todir="${junit.output.dir}"/>
+            <test name="givenBowlingExamples" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="BowlingGame.classpath"/>
+        </junit>
+    </target>
     <target name="BowlingGameTest">
         <mkdir dir="${junit.output.dir}"/>
         <junit fork="yes" printsummary="withOutAndErr">
             <formatter type="xml"/>
             <test name="BowlingGameTest" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="BowlingGame.classpath"/>
+        </junit>
+    </target>
+    <target name="BowlingGameTest_Ultimate">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="BowlingGameTest_Ultimate" todir="${junit.output.dir}"/>
             <jvmarg line="-ea"/>
             <classpath refid="BowlingGame.classpath"/>
         </junit>

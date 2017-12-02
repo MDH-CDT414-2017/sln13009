@@ -149,8 +149,8 @@ public class FrameTest {
 	@Test
 	public void testValid10() {
 		Frame f1 = new Frame();
-		f1.setFirstThrow(12);
-		f1.setSecondThrow(12);
+		f1.setFirstThrow(10);
+		f1.setSecondThrow(10);
 		
 		assertEquals(false, f1.isValid());
 	}
@@ -174,8 +174,8 @@ public class FrameTest {
 	@Test
 	public void testValid13() {
 		Frame f1 = new Frame();
-		f1.setFirstThrow(1);
-		f1.setSecondThrow(-1);
+		f1.setFirstThrow(-1);
+		f1.setSecondThrow(1);
 
 		assertEquals(false, f1.isValid());
 	}
